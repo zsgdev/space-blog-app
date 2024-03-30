@@ -107,14 +107,6 @@ export default {
 
             }
         },
-        submitForm() {
-            this.$refs.observer.validate().then(success => {
-                if (success) {
-                    // Perform form submission here
-                    console.log('Form submitted successfully');
-                }
-            });
-        }
     },
 };
 </script>

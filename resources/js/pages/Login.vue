@@ -62,7 +62,7 @@ export default {
                 this.formErrors.password = 'Password is required';
             }
             if (Object.keys(this.formErrors).length === 0) {
-                // Валидация прошла успешно, отправить форму на сервер
+
                 console.log('Form submitted:', this.formData);
                 // axios.get('/sanctum/csrf-cookie').then(response => {
                     axios.post('/api/login', {
@@ -82,7 +82,6 @@ export default {
                     })
 
             } else {
-                // Есть ошибки валидации, не отправлять форму
                 console.log('Form validation failed');
             }
         }

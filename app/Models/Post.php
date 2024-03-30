@@ -28,7 +28,6 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    // Односторонняя связь: пост принадлежит одной категории
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Category::class);

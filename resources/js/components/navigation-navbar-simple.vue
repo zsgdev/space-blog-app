@@ -3,7 +3,6 @@
         <div class="flex flex-col container mx-auto md:flex-row md:items-center md:justify-between">
             <div class="flex justify-between items-center">
                 <div>
-                    <!-- Используйте router-link вместо простых ссылок -->
                     <router-link to="/" class="text-gray-800 text-xl font-bold md:text-2xl">
                         Space<span class="text-blue-500"> Agency</span>
                     </router-link>
@@ -17,7 +16,6 @@
                 </div>
             </div>
             <div class="flex flex-col md:flex-row md:-mx-4">
-                <!-- Используйте router-link вместо простых ссылок -->
                 <router-link v-if="isLogged" :to="{name: 'Login'}" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Login</router-link>
                 <router-link v-if="isLogged" :to="{name: 'Registration'}" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Registration</router-link>
                 <router-link to="/" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Posts List</router-link>

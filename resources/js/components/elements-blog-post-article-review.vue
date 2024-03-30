@@ -25,7 +25,7 @@
         methods:{
 
             clickPost() {
-                this.$emit('clickPost', this.data); // Генерируем событие clickPost и передаем данные поста
+                this.$emit('clickPost', this.data);
             }
         }
     }

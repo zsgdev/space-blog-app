@@ -60,14 +60,13 @@ export default {
         },
         handleClickPost(post) {
             console.log(post)
-            // const userStore = postStore(); // инициализация хранилища
-            // userStore.post = post; // предположим, что ответ сервера содержит объект с ключом "user"
+
             setTimeout(() => {
                 this.$router.push({ name: 'Post', params: { id: post.id }});
             }, 2000);
 
 
-            // window.location.href = `/post/${post.id}`; // Изменение URL-адреса
+            // window.location.href = `/post/${post.id}`;
 
             // this.router.push({name:'Login'});
             // this.$router.push("/#/home");
