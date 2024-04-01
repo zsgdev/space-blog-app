@@ -46,6 +46,7 @@ export default {
         logout() {
             axios.post('/api/logout')
                 .then(res => {
+                    localStorage.removeItem("authenticated");
                     toast.success('Пока!', {
                         timeout: 3000,
                     });

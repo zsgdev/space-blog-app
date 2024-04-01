@@ -75,7 +75,7 @@ export default {
                             timeout: 3000,
                         });
                         setTimeout(() => {
-                            this.$router.push('/users-list');
+                            this.$router.push('/');
                         }, 3000);
                     }).catch( err => {
                         console.log(err.response)

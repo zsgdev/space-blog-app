@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
-use const App\Http\Controllers\Api\CategoryController;
+//use const App\Http\Controllers\Api\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,6 @@ Route::middleware('auth:sanctum')->post('user/create', [UserController::class, '
 Route::middleware('auth:sanctum')->post('category/create', [CategoryController::class, 'store']);
 Route::middleware('auth:sanctum')->post('post/create', [PostController::class, 'store']);
 Route::get('/posts', [PostController::class, 'index']);
+Route::get('/users', [UserController::class, 'index']);
 Route::get('/posts/{id}', [PostController::class, 'getClickedPost']);
-Route::get('/categories', [CategoryController::class, 'index']);
+//Route::get('/categories', [CategoryController::class, 'index']);

@@ -9,25 +9,25 @@ import Registration from "../js/pages/Registration.vue";
 import UserCreate from "../js/pages/UserCreate.vue";
 
 const routes = [
+    // {
+    //     path: '/',
+    //     name: 'Check',
+    //     component: Check
+    // },
     {
         path: '/',
-        name: 'Check',
-        component: Check
-    },
-    {
-        path: '/posts-list',
         name: 'PostsList',
         component: PostsList
     },
     {
-        path: '/post/:slug',
+        path: '/post/:id',
         name: 'Post',
         component: Post,
         props: true
     },
     {
         path: '/user/login',
-        name: 'LoginPage',
+        name: 'Login',
         component:  Login,
     },
     {
@@ -46,7 +46,7 @@ const routes = [
         component: UserCreate,
     },
     {
-        path: "/user/:slug",
+        path: "/user/:id",
         name: "User",
         component: User,
         props: true,
@@ -58,6 +58,18 @@ const router = createRouter({
     routes,
 });
 
+router.beforeEach((to, from) => {
+    const authenticated = localStorage.getItem("authenticated");
 
+    if (to.meta.requiresGuest && authenticated) {
+        return {
+            name: "Dashboard",
+        };
+    } else if (to.meta.requiresAuth && !authenticated) {
+        return {
+            name: "Login",
+        };
+    }
+});
 
 export default router;

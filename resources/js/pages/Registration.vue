@@ -51,7 +51,7 @@
                     </div>
                 </form>
                 <p class="mt-8 text-xs font-light text-center text-gray-700"> Don't have an account?
-                    <router-link to="/login" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Login</router-link>
+                    <router-link to="user/login" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Login</router-link>
                 </p>
             </div>
         </div>

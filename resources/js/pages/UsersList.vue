@@ -18,43 +18,67 @@
                     <th class="px-4 py-2 bg-gray-200 text-left">ID</th>
                     <th class="px-4 py-2 bg-gray-200 text-left">Name</th>
                     <th class="px-4 py-2 bg-gray-200 text-left">Email</th>
-                    <!-- Добавьте другие столбцы, если необходимо -->
                 </tr>
                 </thead>
                 <tbody>
-                <!-- Здесь вы можете использовать v-for для отображения списка пользователей -->
-                <tr v-for="user in users" :key="user.id">
-                    <td class="border px-4 py-2">{{ user.id }}</td>
+                <tr v-for="user in users.data" :key="user.id" @click="handleClickPost(user)">
+<!--                    <td class="border px-4 py-2">{{ user.id }}</td>-->
                     <td class="border px-4 py-2">{{ user.name }}</td>
                     <td class="border px-4 py-2">{{ user.email }}</td>
-                    <router-link :to="{name: 'User', params: {slug: 'User template'}}"></router-link>
-                    <!-- Добавьте другие столбцы, если необходимо -->
+                    <td class="border px-4 py-2">{{ user.email }}</td>
                 </tr>
                 </tbody>
             </table>
+            <div class="mt-8">
+                <Pagination :currentPage="currentPage" :totalPages="totalPages"
+                            @pageChange="fetchPosts"></Pagination>
+            </div>
         </div>
     </div>
 </template>
 <script>
 import Navbar from "../components/navigation-navbar-simple.vue";
+import Pagination from "@/components/elements-pagination.vue";
 
 export default {
-    components: {Navbar},
+    components: {Pagination, Navbar},
     data() {
         return {
+            currentPage: 1,
+            totalPages: 0,
             users: [
-                {id: 1, name: "John Doe", email: "john@example.com"},
-                {id: 2, name: "Jane Smith", email: "jane@example.com"},
-                // Добавьте других пользователей, если необходимо
+                // {id: 1, name: "John Doe", email: "john@example.com"},
+                // {id: 2, name: "Jane Smith", email: "jane@example.com"},
+                // // Добавьте других пользователей, если необходимо
             ]
         };
     },
+    methods: {
+        async fetchUsers(page = 1) {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/users?page=${page}`);
+                const data = response.data
+                this.users = JSON.parse(JSON.stringify(data.users))
+                this.currentPage = this.users.current_page;
+                this.totalPages = this.users.last_page;
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        },
+        handleClickPost(user) {
+            console.log(user)
+            setTimeout(() => {
+                this.$router.push({ name: 'User', params: { id: user.id }});
+            }, 2000);
+        },
+    },
     mounted() {
-        axios.get('/api/user').then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.log(err)
-        })
+        this.fetchUsers()
+        // axios.get('/api/user').then((res) => {
+        //     console.log(res)
+        // }).catch((err) => {
+        //     console.log(err)
+        // })
     }
 };
 </script>
